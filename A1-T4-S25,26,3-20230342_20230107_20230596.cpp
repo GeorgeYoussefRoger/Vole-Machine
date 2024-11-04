@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+// Function to handle user choices for operating the Machine simulator
 void makeChoice(Machine& chosenMachine) {
     start:
     short choice;
@@ -28,6 +29,7 @@ void makeChoice(Machine& chosenMachine) {
             chosenMachine.print();
             break;
         case 6:
+            // Display the guide with available operation codes and their descriptions
             cout << "Op-code: 1. RXY - load R w/ bits from memory XY\n"
                  << "Op-code: 2. RXY - load R w/ bits XY\n"
                  << "Op-code: 3. RXY - store bits in R in memory address XY\n"

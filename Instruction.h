@@ -8,9 +8,9 @@ using namespace std;
 
 class Instruction {
 protected:
-    char opCode;
-    string operand;
-    string address;
+    char opCode; // Operation code for the instruction
+    string operand; // Operand associated with the instruction
+    string address; // Address where the instruction is located
 public:
     Instruction();
     Instruction(string instIn,string a);

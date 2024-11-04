@@ -5,7 +5,7 @@
 using namespace std;
 
 class PC {
-    string currentAddress;
+    string currentAddress; // Stores the current address of the program counter
 public:
     PC();
     void setCounterAddress(string curAddressIn);

@@ -11,12 +11,12 @@
 using namespace std;
 
 class Machine {
-    bool steps;
-    vector <Instruction> instructions;
-    Memory memory[16][16];
-    Register reg[16];
-    IR instructionReg;
-    PC counter;
+    bool steps; // Indicates single-step mode
+    vector <Instruction> instructions; // List of loaded instructions
+    Memory memory[16][16]; // Memory array with 16x16 structure
+    Register reg[16]; // Register array with 16 registers
+    IR instructionReg; // Instruction register (IR)
+    PC counter; // Program counter (PC)
 public:
     Machine();
     ~Machine();

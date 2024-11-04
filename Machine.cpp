@@ -1,12 +1,12 @@
 #include "Machine.h"
 
+// Constructor initializes registers and memory with default values and addresses
 Machine::Machine() {
     short count = 0;
     for (auto& i : reg) {
         i.setAddress('0' + toHex(count++));
         i.setValue("00");
     }
-
     count = 0;
     for (int i = 0; i < 16; ++i) {
         for (int j = 0; j < 16; ++j) {
@@ -17,10 +17,12 @@ Machine::Machine() {
     }
 }
 
+// Sets the machine to single-step mode based on input parameter
 void Machine:: singleStep(bool s) {
     steps = s;
 }
 
+// Converts a decimal fraction to binary
 string Machine::fractionToBin(float fraction, int numBits) {
     string binaryFraction = "";
     for (int i = 0; i < numBits; ++i) {
@@ -32,6 +34,7 @@ string Machine::fractionToBin(float fraction, int numBits) {
     return binaryFraction;
 }
 
+// Converts a float value to a binary
 string Machine::floatToBin(float value) {
     string ans = "";
     if (value < 0) {
@@ -63,6 +66,7 @@ string Machine::floatToBin(float value) {
     return ans;
 }
 
+// Converts decimal to hexadecimal
 string Machine::toHex(int dec) {
     string result;
     if (dec < 10) {
@@ -83,6 +87,7 @@ string Machine::toHex(int dec) {
     return result;
 }
 
+// Converts a hexadecimal string to a decimal
 unsigned short Machine::toDec(string hexString) {
     int result = 0;
     for (char x : hexString) {
@@ -101,6 +106,7 @@ unsigned short Machine::toDec(string hexString) {
     return result;
 }
 
+// Converts a single hexadecimal character to decimal
 unsigned short Machine::toDec(char& hexChar) {
     int result = hexChar - '0';
     if (result <= 9) {
@@ -111,12 +117,14 @@ unsigned short Machine::toDec(char& hexChar) {
     }
 }
 
+// Converts binary string to integer
 long Machine::binToInt(string Binary_num) {
     long ans{ 0 };
     for (int i = 0; i < (int)Binary_num.size(); ++i) if (Binary_num[i] == '1') ans += (1 << (Binary_num.size() - i - 1));
     return ans;
 }
 
+// Converts integer to binary string
 string Machine::intToBin(long long num) {
     string binary_num{ "" };
     while (num >= 1) {
@@ -130,6 +138,7 @@ string Machine::intToBin(long long num) {
     return binary_num;
 }
 
+// Adds two binary strings and returns the result
 string Machine::addBin(string a, string b) {
     bitset<8> bitsetA(a);
     bitset<8> bitsetB(b);
@@ -137,6 +146,7 @@ string Machine::addBin(string a, string b) {
     return result.to_string();
 }
 
+// Converts binary string to hexadecimal
 string Machine::binaryToHex(const string& binaryString) {
     bitset<32> bitset(binaryString);
     unsigned long long decimalValue = bitset.to_ullong();
@@ -145,6 +155,7 @@ string Machine::binaryToHex(const string& binaryString) {
     return stream.str();
 }
 
+// Converts binary string to floating-point decimal value
 float Machine::floatToDec(string binary) {
     string expo = binary.substr(1, 3);
     int Expo = binToInt(expo);
@@ -174,6 +185,7 @@ float Machine::floatToDec(string binary) {
     return ans;
 }
 
+// Executes a single instruction, performs action based on opcode
 void Machine::executeOne(Instruction instr, short x) {
     cout << "\n=======================[Executing of " << instr.getCode() << "]=========================\n";
     cout << "\n=====[PC: " << counter.getCounterAddress() << "]=====\n";
@@ -244,6 +256,7 @@ void Machine::executeOne(Instruction instr, short x) {
     }
 }
 
+// Fetches and executes instructions in single-step mode
 void Machine::fetch() {
     if (instructions.empty()) {
         cout << "Please input file first.\n";
@@ -272,6 +285,7 @@ void Machine::fetch() {
     }
 }
 
+// Loads instructions from a file into the instruction vector
 void Machine::loadInstructions() {
     cout << "\n=============================[Loading File]=============================\n";
     cout << "Enter Filename (with extension .txt):";
@@ -308,6 +322,7 @@ void Machine::loadInstructions() {
     }
 }
 
+// Executes all instructions starting from a user-defined Program Counter (PC) address
 void Machine::execute() {
     cout << "Enter counter (Hex) to start from: ";
     string cAddress;
@@ -383,6 +398,7 @@ void Machine::execute() {
     }
 }
 
+// Prints the current status of registers and memory
 void Machine::print() {
     cout << "\nRegister:\n";
     for (auto i : reg) {
@@ -396,6 +412,7 @@ void Machine::print() {
     }
 }
 
+// Clears memory and registers to reset machine state
 void Machine::clear() {
     for (int i = 0; i < 16; ++i) {
         for (int j = 0; j < 16; ++j) {

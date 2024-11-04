@@ -5,8 +5,8 @@
 using namespace std;
 
 class Register {
-    string value;
-    string address;
+    string value; // The value stored in this register
+    string address; // The address of this register
 public:
     Register();
     void setValue(string v);

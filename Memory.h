@@ -5,8 +5,8 @@
 using namespace std;
 
 class Memory {
-    string value;
-    string address;
+    string value; // The value stored in this memory cell
+    string address; // The address of this memory cell
 public:
     Memory();
     void setValue(string v);
